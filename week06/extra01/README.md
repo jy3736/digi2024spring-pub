@@ -1,4 +1,4 @@
-## Design of a 6-Input Filter Module
+## Problem: Design of a 6-Input Filter Module
 
 ### Objective:
 Design a `filter_logic` Verilog module stored in a file named `top.v`. This module should accept six input bits `a`, `b`, `c`, `d`, `e`, and `f`, and produce three outputs `x`, `y`, and `z` based on three sets of specified random logic rules.

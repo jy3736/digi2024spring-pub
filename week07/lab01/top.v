@@ -23,6 +23,25 @@ module fadd(
     output cout
 );
 
-// add your code here
+wire s1, c1, c2;
+
+// First half adder to add a and b
+hadd ha1(
+    .a(a),
+    .b(b),
+    .s(s1),
+    .c(c1)
+);
+
+// Second half adder to add sum of first adder and carry in
+hadd ha2(
+    .a(s1),
+    .b(cin),
+    .s(s),
+    .c(c2)
+);
+
+// Carry out is OR of both carries
+assign cout = c1 | c2;
 
 endmodule

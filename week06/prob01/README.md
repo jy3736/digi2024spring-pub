@@ -1,4 +1,4 @@
-## Design of a 4-Input Combinational Logic Module
+## Problem: Design of a 4-Input Combinational Logic Module
 
 ### Objective:
 Design a `comb_logic` Verilog module stored in a file named `top.v`. This module should accept four input bits `a`, `b`, `c`, and `d`, and produce two outputs `x` and `y` based on specified logic derived from a truth table.

@@ -12,4 +12,3 @@ module quad_inverter(
 // add your code here
 
 endmodule
-
