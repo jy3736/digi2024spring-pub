@@ -6,7 +6,9 @@ module hadd(
     input a, b,
     output sum, co);
 
-// add your code here
+// ======================
+// = add your code here =
+// ======================
 
 endmodule
 

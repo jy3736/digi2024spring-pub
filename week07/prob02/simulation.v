@@ -11,19 +11,22 @@ wire cout;
 rfadd5 uut (.a(a), .b(b), .cin(cin), .s(s), .cout(cout));
 
 initial begin
+    {a,b,cin} = 0;
+    #100;
+
     repeat (100) begin
+        {a,b,cin} = {$random};
         #50;
-        a = $random % 32;
-        b = $random % 32;
-        cin = $random % 2;
     end
 
-    #50 $finish;
+    #50;
+    $finish;
 end
 
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars();
+    $display("Time a[4:0] b[4:0] cin cout s[4:0]");
     $monitor("%8t %b %b %b  %b %b", $time, a, b, cin, cout, s);
 end
 

@@ -25,7 +25,8 @@ module fsm_circuit(
     output wire z
 );
 
-// add your code here
-
+// ======================
+// = add your code here =
+// ======================
 
 endmodule

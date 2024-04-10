@@ -1,38 +1,35 @@
-## Construct a 1-bit Full Adder Using Half Adders
+## Implement a Circuit Based on a Given Truth Table
 
-Design a 1-bit full adder, named `fadd`, utilizing two instances of a 1-bit half adder module, named `hadd`, to add two binary digits along with a carry input.
+Design a Verilog module in a file named `top.v` that implements a circuit described by a specific truth table. The circuit should have three inputs (`a`, `b`, `c`) and two outputs (`x`, `y`). Use an `always` block to define the logic for outputs `x` and `y` based on the given truth table.
 
-### 1-bit Half Adder Source (`hadd`):
+### Specifications:
+- **Module Interface:**
 ```verilog
-// 1-bit Half Adder (hadd)
-module hadd(
+module top(
     input a,
     input b,
-    output s,
-    output c
-);
-
-assign s = a ^ b; // Sum is XOR of inputs
-assign c = a & b; // Carry is AND of inputs
-
-endmodule
-```
-
-### Task:
-- **Implement `fadd`**: Use two `hadd` modules and additional logic to create a 1-bit full adder that computes the sum of two bits and a carry input.
-
-### Specifications for `fadd`:
-```verilog
-// 1-bit Full Adder (fadd) using Half Adders
-module fadd(
-    input a,
-    input b,
-    input cin, // Carry input
-    output s,  // Sum output
-    output cout // Carry output
+    input c,
+    output reg x,
+    output reg y
 );
 ```
 
-### Implementation Details:
-- Your design should properly handle the carry propagation between the two half adders.
-- Ensure that the output `s` represents the correct sum and `cout` is the correct carry output based on the inputs and carry in.
+### Requirements:
+- **Inputs:** Single-bit inputs `a`, `b`, and `c`.
+- **Outputs:** Single-bit outputs `x` and `y`.
+- The behavior of the outputs `x` and `y` is defined by the following truth table:
+
+| a | b | c | x | y |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 1 | 0 | 1 |
+| 0 | 1 | 0 | 1 | 0 |
+| 0 | 1 | 1 | 1 | 1 |
+| 1 | 0 | 0 | 0 | 1 |
+| 1 | 0 | 1 | 1 | 0 |
+| 1 | 1 | 0 | 1 | 1 |
+| 1 | 1 | 1 | 0 | 0 |
+
+### Implementation:
+- Develop the module logic within an `always @(*)` block, accounting for all combinations of inputs as specified in the truth table.
+- Ensure all code is contained within `top.v`.

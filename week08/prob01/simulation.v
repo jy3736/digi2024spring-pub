@@ -7,22 +7,15 @@ module dff_pe_sr_tb;
 reg clk, rst, d;
 wire q;
 
-dff_pe_sr DUT (
-    .clk(clk),
-    .rst(rst),
-    .d(d),
-    .q(q)
-);
+dff_pe_sr DUT (.clk(clk), .rst(rst), .d(d), .q(q));
 
 initial begin
-    clk = 0;
-    rst = 0;
-    d = 0;
-
+    {clk, rst, d} = 3'b0;
     #100; 
     rst = 1;
-    #100; 
+    @(negedge clk);
     rst = 0;
+    @(posedge clk);
 
     repeat(100) begin
         @(negedge clk);
@@ -37,6 +30,7 @@ end
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars();
+    $display("Time clk rst d q");
     $monitor("%8t %b %b %b %b", $time, clk, rst, d, q);
 end
 

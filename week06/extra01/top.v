@@ -10,6 +10,8 @@ module filter_logic(
     output reg z
 );
 
-// add your code here
+// ======================
+// = add your code here =
+// ======================
 
 endmodule

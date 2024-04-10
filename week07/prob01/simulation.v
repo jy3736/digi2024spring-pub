@@ -3,10 +3,12 @@
 
 module hadd_tb;
 
-reg a;
-reg b;
-wire sum;
-wire co;
+reg a,b;
+wire co, sum;
+
+wire [1:0] din, st;
+assign din = {a,b};
+assign st = {co,sum};
 
 hadd uut (
     .a(a), 
@@ -18,18 +20,19 @@ hadd uut (
 initial begin
     {a,b} = 0;
     repeat (100) begin
-        #50 
-        a = $random % 2;
-        b = $random % 2;
+        {a,b}={$random};
+        #50;
     end
 
-    #50 $finish;
+    #50;
+    $finish;
 end
 
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars();
-    $monitor("%8t %b %b   %b %b", $time, a, b, co, sum);
+    $display("Time a b co sum");
+    $monitor("%8t %b %b", $time, din, st);
 end
 
 endmodule

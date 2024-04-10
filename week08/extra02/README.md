@@ -2,10 +2,10 @@
 
 Construct the Finite State Machine as depicted in the provided diagram.
 
-![Shift Register](fsm.png)
-*Source: https://hdlbits.01xz.net/wiki/Exams/ece241_2014_q4*
+<img src="fsm.png" alt="Shift Register" width="400">
+<p>Source: <a href="https://hdlbits.01xz.net/wiki/Exams/ece241_2014_q4">HDLBits</a></p>
 
-**Verilog Module Declaration:**
+**DFF Module**
 ```verilog
 module DFF(
     input clk,
@@ -24,14 +24,17 @@ always @(posedge clk) begin
         q <= d;
     end
 end
+```
 
-
+**fsm_circuit Declaration**
+```verilog
 module fsm_circuit(
     input wire clk,    // Clock input
     input wire reset,  // Asynchronous reset input
-    input wire x,      // Input 'X'
-    output wire z      // Output 'Z'
+    input wire x,      // Input 'x'
+    output wire z      // Output 'z'
 );
+
 // Internal logic and DFF instances will be defined here.
 
 endmodule

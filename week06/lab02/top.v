@@ -5,6 +5,8 @@ module decode(
   output reg zero
 );
 
-// add your code here
+// ======================
+// = add your code here =
+// ======================
 
 endmodule

@@ -6,7 +6,7 @@ module filter_logic_tb;
 reg a, b, c, d, e, f;
 wire x, y, z;
 
-// Instantiate the Unit Under Test (UUT)
+
 filter_logic uut (
     .a(a), 
     .b(b), 
@@ -20,15 +20,15 @@ filter_logic uut (
 );
 
 initial begin
-    // Initialize Inputs
+    
     a = 0; b = 0; c = 0; d = 0; e = 0; f = 0;
 
-    // Setup the waveform dump
+    
     $dumpfile("wave.vcd");
     $dumpvars();
     $monitor("%8t %b %b %b %b %b %b  %b %b %b", $time, a, b, c, d, e, f, x, y, z);
 
-    // Generate 100 random test cases
+    
     repeat (100) begin
         #50; 
         a = $random % 2;
@@ -40,8 +40,8 @@ initial begin
         #50; 
     end
     
-    #10; // Wait for the last test case to be evaluated
-    $finish; // End simulation
+    #10; 
+    $finish; 
 end
 
 endmodule

@@ -31,10 +31,6 @@ module comb01_tb;
   );
 
   initial begin
-    $dumpfile("wave.vcd");
-    $dumpvars(0, comb01_tb);    
-    $monitor("%8t, %b, %b, %b, %b, %b, %b, %b, %b, %b, %b", $time, a, b, not_a, not_b, and_ab, or_ab, xor_ab, nand_ab, nor_ab, xnor_ab);
-    // Initial values
     a = 0; b = 0;
     #100;
 
@@ -45,6 +41,12 @@ module comb01_tb;
         #100; // Delay to observe the changes
     end
     $finish; 
+  end
+
+  initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0, comb01_tb);    
+    $monitor("%8t, %b, %b, %b, %b, %b, %b, %b, %b, %b, %b", $time, a, b, not_a, not_b, and_ab, or_ab, xor_ab, nand_ab, nor_ab, xnor_ab);
   end
 
 endmodule

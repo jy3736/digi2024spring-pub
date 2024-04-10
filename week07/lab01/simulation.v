@@ -1,38 +1,42 @@
-// Testbench for 1-bit Full Adder (fadd)
 `timescale 1ns / 1ps
 `include "top.v"
 
-module fadd_tb;
+module tb_top();
+reg a, b, c;
+wire x, y;
 
-reg a, b, cin;
-wire s, cout;
+wire [2:0] abc;
+assign abc = {a, b, c};
 
-// Instantiate the Unit Under Test (UUT)
-fadd uut (
+wire [1:0] st;
+assign st = {x, y};
+
+top uut(
     .a(a), 
-    .b(b),
-    .cin(cin),
-    .s(s),
-    .cout(cout)
+    .b(b), 
+    .c(c), 
+    .x(x), 
+    .y(y)
 );
 
 initial begin
-    
-    repeat (100) begin
-        #50; 
-        a = $random % 2;
-        b = $random % 2; 
-        cin = $random % 2; 
-    end
-    
-    #50;
-    $finish; 
+    $dumpfile("top.vcd");
+    $dumpvars();
+    $display("Time a b c x y");
+    $monitor("%8t %b %b", $time, abc, st);
 end
 
 initial begin
-    $dumpfile("wave.vcd");
-    $dumpvars();
-    $monitor("%8t %b %b %b  %b %b", $time, a, b, cin, cout, s);
+    {a,b,c} = 0;
+    #100;
+
+    repeat(100) begin
+        {a,b,c} = $urandom_range(0, 7);
+        #50;
+    end
+    
+    #100;
+    $finish;
 end
 
 endmodule

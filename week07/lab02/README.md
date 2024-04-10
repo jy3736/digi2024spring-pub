@@ -1,28 +1,33 @@
-### Design of Quad Inverter Using 2-to-1 Multiplexers
+## Implement a 1-bit Full Adder Using Half Adders
 
-Implement a circuit with four inputs (a, b, c, d) that produces four outputs (ab, bb, cb, db), where each output is the logical NOT of the corresponding input. This implementation should exclusively use 2-to-1 multiplexers (MUX) and constants 0 and 1, without employing any logical operators or direct inversion operations.
+Implement a 1-bit full adder (`fadd`) in Verilog by utilizing two instances of a 1-bit half adder (`hadd`). The full adder should handle three inputs (two significant bits and one input carry) and produce a sum and an output carry. You are provided with the half adder source code and the declaration for the full adder module. Integrate additional logic as necessary to ensure correct functionality.
 
-#### Provided: 2-to-1 MUX Module
-A basic 2-to-1 MUX module is provided for the implementation:
-
+#### Half Adder Source (`hadd`):
 ```verilog
-module mux2(
-    input in0, input in1, input sel, 
-    output out);
+module hadd(
+    input a,
+    input b,
+    output s,
+    output c
+);
 
-    assign out = sel ? in1 : in0;
+assign s = a ^ b;
+assign c = a & b;
+
 endmodule
 ```
 
-#### Design Task:
-Utilizing the given 2-to-1 MUX, design a circuit named `quad_inverter` that inverts each of the four inputs (a, b, c, d) to produce four outputs (ab, bb, cb, db) respectively, where ab is the inverted a, bb is the inverted b, cb is the inverted c, and db is the inverted d.
-
+#### Full Adder Module Declaration (`fadd`):
 ```verilog
-module quad_inverter(
-    input a, b, c, d,
-    output ab, bb, cb, db);
-
-// add your code here
-
+module fadd(
+    input a,
+    input b,
+    input cin,
+    output sum,
+    output cout
+);
+// Implement the full adder using two hadd instances and additional logic
 endmodule
 ```
+
+**Deliverables**: Implement the `fadd` module in Verilog, ensuring it meets the functionality of a 1-bit full adder as described.

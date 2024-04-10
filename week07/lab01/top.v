@@ -1,47 +1,24 @@
-// 1-bit Half Adder (hadd), DO NOT MODIFY hadd module
-// ---------------------------------------------------
-module hadd(
+
+module cl3_2(
     input a,
     input b,
-    output s,
-    output c
+    input c,
+    output reg x,
+    output reg y
 );
 
-assign s = a ^ b;
-assign c = a & b;
-
-endmodule
-// ---------------------------------------------------
-
-
-// 1-bit Full Adder using 1-bit Half Adders (fadd)
-module fadd(
-    input a,
-    input b,
-    input cin,
-    output s,
-    output cout
-);
-
-wire s1, c1, c2;
-
-// First half adder to add a and b
-hadd ha1(
-    .a(a),
-    .b(b),
-    .s(s1),
-    .c(c1)
-);
-
-// Second half adder to add sum of first adder and carry in
-hadd ha2(
-    .a(s1),
-    .b(cin),
-    .s(s),
-    .c(c2)
-);
-
-// Carry out is OR of both carries
-assign cout = c1 | c2;
+always @(*) begin
+    case ({a, b, c})
+        3'b000: {x, y} = 2'b00;
+        3'b001: {x, y} = 2'b01;
+        3'b010: {x, y} = 2'b10;
+        3'b011: {x, y} = 2'b11;
+        3'b100: {x, y} = 2'b01;
+        3'b101: {x, y} = 2'b10;
+        3'b110: {x, y} = 2'b11;
+        3'b111: {x, y} = 2'b00;
+        default: {x, y} = 2'b00; 
+    endcase
+end
 
 endmodule

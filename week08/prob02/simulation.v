@@ -7,29 +7,20 @@ module neg_edge_d_ff_async_reset_tb;
 reg clk, rst, d;
 wire q;
 
-dff_ne_ar DUT (
-    .clk(clk),
-    .rst(rst),
-    .d(d),
-    .q(q)
-);
+dff_ne_ar DUT (.clk(clk), .rst(rst), .d(d), .q(q));
 
 initial begin
-    clk = 0;
-    rst = 0;
-    d = 0;
-
+    {clk, rst, d} = 0;
     #100; 
     rst = 1;
-    #100; 
+    @(negedge clk);
     rst = 0;
+    @(posedge clk);
 
     repeat(100) begin
-        @(posedge clk);
-        d = $random;
         @(negedge clk);
-        #10;
-        // Check if q is equal to d
+        d = $random;
+        @(posedge clk);
     end
 
     #50
@@ -39,6 +30,7 @@ end
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars();
+    $display("Time clk rst d q");
     $monitor("%8t %b %b %b %b", $time, clk, rst, d, q);
 end
 

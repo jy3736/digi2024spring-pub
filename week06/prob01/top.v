@@ -1,12 +1,14 @@
 module comb_logic(
-    input a,
-    input b,
-    input c,
-    input d,
+    input wire a,
+    input wire b,
+    input wire c,
+    input wire d,
     output reg x,
     output reg y
 );
 
-// add your code here
+// ======================
+// = add your code here =
+// ======================
 
 endmodule

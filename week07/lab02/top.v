@@ -1,14 +1,25 @@
-module mux2(
-    input in0, input in1, input sel, 
-    output out);
+module hadd(
+    input a,
+    input b,
+    output s,
+    output c
+);
 
-    assign out = sel ? in1 : in0;
+assign s = a ^ b;
+assign c = a & b;
+
 endmodule
 
-module quad_inverter(
-    input a, b, c, d,
-    output ab, bb, cb, db);
+module fadd(
+    input a,
+    input b,
+    input cin,
+    output s,
+    output cout
+);
 
-// add your code here
+// ======================
+// = add your code here =
+// ======================
 
 endmodule

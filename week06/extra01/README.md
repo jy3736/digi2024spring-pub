@@ -29,10 +29,8 @@ module filter_logic(
 2. **Rule for Output `y`:** Output `y` should be high if there is an even number of `1`s among inputs `d`, `e`, and `f`.
 3. **Rule for Output `z`:** Output `z` should be high if inputs `a` and `b` are different, or if both `e` and `f` are high.
 
-### Implementation Guidance:
+### Guidance:
 - Implement the logic rules within an `always` block, triggered by any change in the inputs.
 - Consider using conditional (`if-else`) statements or `case` statements to simplify the logic implementation.
 - Ensure all code is in `top.v`.
 
-### Deliverable:
-Submit the `top.v` file, ensuring your implementation correctly reflects the specified logic rules and is well-commented to explain the logic behind each rule.

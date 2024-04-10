@@ -8,6 +8,8 @@ endmodule
 
 module rfadd5(input [4:0] a, b, input cin, output [4:0] s, output cout);
 
-// add your code here
+// ======================
+// = add your code here =
+// ======================
 
 endmodule

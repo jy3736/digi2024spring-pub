@@ -1,48 +1,43 @@
 `timescale 1ns / 1ps
 `include "top.v"
 
-module quad_inverter_tb;
+module fadd_tb;
 
-    // Inputs
-    reg a, b, c, d;
+reg a, b, cin;
+wire s, cout;
 
-    // Outputs
-    wire ab, bb, cb, db;
+wire [2:0] din;
+assign din = {a, b, cin};
 
-    // Instantiate the Unit Under Test (UUT)
-    quad_inverter uut (
-        .a(a), 
-        .b(b), 
-        .c(c), 
-        .d(d), 
-        .ab(ab), 
-        .bb(bb), 
-        .cb(cb), 
-        .db(db)
-    );
+wire [1:0] st;
+assign st = {cout, s};
 
-    initial begin
-        // Initialize Inputs
-        a = 0; b = 0; c = 0; d = 0;
+fadd uut (
+    .a(a), 
+    .b(b),
+    .cin(cin),
+    .s(s),
+    .cout(cout)
+);
 
-        // Apply random tests
-        repeat (100) begin
-            #50;
-            a = $random % 2;
-            b = $random % 2;
-            c = $random % 2;
-            d = $random % 2;
-         end
+initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars();
+    $display("Time a b cin  cout s");
+    $monitor("%8t %b %b", $time, din, st);
+end
 
-        // End simulation after the tests
-        #50;
-        $finish;
+initial begin
+    {a, b, cin} = 3'b0;
+    #100;
+
+    repeat (100) begin
+       {a,b,cin} = {$random};
+        #50; 
     end
-
-    initial begin
-        $dumpfile("wave.vcd");
-        $dumpvars();
-        $monitor("%8t %b %b %b %b  %b %b %b %b", $time, a, b, c, d, ab, bb, cb, db);
-    end
+    
+    #50;
+    $finish; 
+end
 
 endmodule
